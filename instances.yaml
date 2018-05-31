@@ -51,7 +51,7 @@ global_configuration:
   REGISTRY_PRIVATE_INSECURE: TRUE
 contrail_configuration:
   AAA_MODE: cloud-admin
-  CONTRAIL_VERSION: 5.0-44
+  CONTRAIL_VERSION: 5.0-40
   #CONTRAIL_VERSION: latest
   #CONTAINER_REGISTRY: opencontrailnightly
   #CONTROLLER_NODES: 10.102.44.52
