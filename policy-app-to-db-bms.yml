@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: apptodb-bms 
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      tier: db-bms 
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          tier: app 
