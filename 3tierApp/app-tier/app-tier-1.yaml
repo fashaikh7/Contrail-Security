@@ -1,0 +1,41 @@
+# Author: SAVITHRU LOKANATH
+# Contact: SAVITHRU AT ICLOUD DOT COM
+# Copyright (c) 2018 Juniper Networks, Inc. All rights reserved
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-pod-1
+  labels:
+    tier: app
+    app: HRApp-1
+    site: USA
+    deployment: production
+spec:
+  containers:
+  - name: app-pod-1
+    image: savvythru/three-tier-frontend
+    env:
+    - name: REDMINE_DB_MYSQL
+      value: database-svc-1
+    - name: REDMINE_DB_PASSWORD
+      value: secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-svc-1
+  labels:
+    tier: app
+    app: HRApp-1
+    site: USA
+    deployment: production
+spec:
+  selector:
+    tier: app
+    app: HRApp-1
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
