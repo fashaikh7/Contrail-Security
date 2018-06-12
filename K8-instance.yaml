@@ -1,0 +1,23 @@
+provider_config:
+  bms:
+instances:
+  b7s29:
+   provider: bms
+   roles:            # Optional.  If roles is not defined, all below roles will be created
+      config_database:         # Optional.
+      config:                  # Optional.
+      control:                 # Optional.
+      analytics_database:      # Optional.
+      analytics:               # Optional.
+      webui:                   # Optional.
+      k8s_master:              # Optional.
+   ip: 10.84.29.29
+  b7s30:
+   provider: bms
+   roles:            # Optional.  If roles is not defined, all below roles will be created
+     vrouter:        # Optional.
+     k8s_node:       # Optional.
+   ip: 10.84.29.30
+contrail_configuration:
+  CONTRAIL_VERSION: latest
+  CONTAINER_REGISTRY: opencontrailnightly
