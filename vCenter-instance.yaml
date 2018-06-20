@@ -1,0 +1,42 @@
+provider_config:
+  bms:
+    ssh_pwd: c0ntrail123
+    ssh_user: root
+    ntpserver: 10.84.5.100
+    domainsuffix: local
+
+instances:
+  bms1:
+    provider: bms
+    ip: 10.84.23.21
+    roles:
+      config_database:
+      config:
+      control:
+      analytics_database:
+      analytics:
+      webui:
+      vcenter_plugin:
+  bms2:
+    provider: bms
+    esxi_host: 10.84.24.7
+    ip: 10.84.24.235
+    roles:
+      vrouter:
+
+global_configuration:
+  CONTAINER_REGISTRY: opencontrailnightly
+  CONTRAIL_VERSION: 5.0.0-85
+
+contrail_configuration:
+  CLOUD_ORCHESTRATOR: vcenter
+  CONTROLLER_NODES: 10.84.23.21
+  RABBITMQ_NODE_PORT: 5673
+  VCENTER_SERVER: 10.84.16.51
+  VCENTER_USERNAME: administrator@vsphere.local
+  VCENTER_PASSWORD: Contrail123!
+    VCENTER_DATACENTER: fawad-dc
+  VCENTER_DVSWITCH: fawad_dvs
+  VCENTER_WSDL_PATH: /usr/src/contrail/contrail-web-core/webroot/js/vim.wsdl
+  VCENTER_AUTH_PROTOCOL: https
+  
