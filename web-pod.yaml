@@ -1,0 +1,16 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: web
+  labels:
+    tier: web
+    app: HRApp-1
+    site: USA
+    deployment: production
+spec:
+  nodeSelector:
+    "kubernetes.io/hostname": compute-contrail-sf
+  containers:
+    - name: web
+      image: virtualhops/ato-ubuntu:latest
+  restartPolicy: Never
