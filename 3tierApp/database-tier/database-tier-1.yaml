@@ -13,7 +13,7 @@ metadata:
 spec:
   containers:
   - name: database-pod-1
-    image: savvythru/three-tier-database
+    image: fashaikh7/database
     env:
     - name: MYSQL_DATABASE
       value: redmine
