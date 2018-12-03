@@ -1,0 +1,77 @@
+#kind: Service
+#apiVersion: v1
+#metadata:
+#  name: nginx
+#spec: 
+#  selector:
+#    app: nginx
+#  ports:
+#    - name: main
+#      protocol: TCP 
+#      port: 80 
+#      targetPort: 80
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-svc-1
+  labels:
+    tier: web
+    app: HRApp-1
+    site: USA
+    deployment: production
+spec:
+  selector:
+    tier: web
+    app: HRApp-1
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 9090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-svc-1
+  labels:
+    tier: app
+    app: HRApp-1
+    site: USA
+    deployment: production
+spec:
+  selector:
+    tier: app
+    app: HRApp-1
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: database-svc-1
+  labels:
+    tier: db
+    app: HRApp-1
+    site: USA
+    deployment: production
+spec:
+  selector:
+    tier: db
+    app: HRApp-1
+  ports:
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306
+
+
+
+
+
+
+
+
+
+
+
+

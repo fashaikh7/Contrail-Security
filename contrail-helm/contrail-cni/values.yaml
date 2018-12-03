@@ -1,0 +1,7 @@
+#Kubernetes Master Node IP - This is where Kubernetes Api runs
+masternode: "10.102.44.41"
+#Kubernetes Api port. By default it's "6443". Please change if needed
+k8ApiPort: "6443"
+#Kubernetes Service Subnet. 
+k8ServiceSubnet: "10.0.0.0/24"
+

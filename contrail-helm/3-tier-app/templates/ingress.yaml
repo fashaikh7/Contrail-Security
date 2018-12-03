@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata: 
+  name: hcm-app-1
+  annotations:
+    http.port: "443"
+spec: 
+  backend:
+    serviceName: web-svc-1
+    servicePort: 80
+
+
+
+
+
+
+
+   

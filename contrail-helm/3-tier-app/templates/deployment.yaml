@@ -1,0 +1,87 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: web-pod-1
+spec:
+  replicas: {{.Values.scale}}
+  template:
+    metadata:
+      labels:
+        tier: web
+        app: HRApp-1
+        site: USA
+        deployment: production                
+    spec:
+      nodeSelector:
+        "aws": {{ .Values.aws | quote }}
+      containers:
+      - name: web-pod-1
+        image: fashaikh7/three-tier-proxy:{{.Values.image}} 
+        env:
+        - name: REDMINE_SVC
+          value: app-svc-1
+        - name: REDMINE_SVC_PORT
+          value: "3000"
+          ports:
+          - containerPort: 9090
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: app-pod-1
+spec:
+  replicas: {{.Values.scale}}
+  template:
+    metadata:
+      labels:
+        tier: app
+        app: HRApp-1
+        site: USA
+        deployment: production
+    spec:
+      nodeSelector:
+        "aws": {{ .Values.aws | quote }}
+      containers:
+      - name: app-pod-1
+        image: fashaikh7/three-tier-frontend:{{.Values.image}}
+        env:
+        - name: REDMINE_DB_MYSQL
+          value: database-svc-1
+        - name: REDMINE_DB_PASSWORD
+          value: secret
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: database-pod-1
+spec:
+  replicas: {{.Values.scale}}
+  template:
+    metadata:
+      labels:
+        tier: db
+        app: HRApp-1
+        site: USA
+        deployment: production
+    spec:
+      nodeSelector:
+        "aws": {{ .Values.aws | quote }}
+      containers:
+      - name: database-pod-1
+        image: fashaikh7/three-tier-database:{{.Values.image}}
+        env:
+        - name: MYSQL_DATABASE
+          value: redmine
+        - name: MYSQL_ROOT_PASSWORD
+          value: secret
+
+
+
+
+
+
+
+
+
+
+
